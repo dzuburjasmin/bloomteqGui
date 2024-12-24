@@ -1,0 +1,15 @@
+.list {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+}
+
+.custom-font-bold{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.activeButton{
+  background-color: white;
+  color: #023047 !important;
+}

@@ -1,0 +1,108 @@
+
+
+<nav class="navbar navbar-expand text-white d-flex flex-row justify-content-center" style="background-color: #023047">
+  <li class="nav">
+    <a class="nav-link text-white custom-font-bold" id="tab-login" role="tab" (click)="toggleisLogin(true);" [ngClass]="{'activeButton':showLogin == true}">Login</a>
+  </li>
+  <li class="nav" > 
+    <a class="nav-link text-white custom-font-bold" id="tab-register" role="tab" (click)="toggleisLogin(false);" [ngClass]="{'activeButton':showLogin == false}">Register</a>
+  </li>
+
+</nav>
+<section  class="container-fluid ">
+    
+
+      <div class="card mt-3">
+        <div class="card-header d-flex justify-content-between align-items-center p-3"
+          style="border-top: 4px solid #fb8500">
+        </div>
+        <div class="card-body" style="position: relative; height: 500px ">
+          <div class="d-md-flex justify-content-around">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" *ngIf="showLogin">
+              <div class="text-center mb-3">
+                    <h4 class="">Login</h4>
+              </div>
+              <div class="form-outline">
+                <div class="invalid-feedback">Please fill out this field.</div>
+                <input formControlName="userName" type="email" id="userName" class="form-control" name="userName" 
+                [class.is-invalid]="logInSubmitted && loginForm.get('userName')?.errors">
+                <label class="form-label" for="userName">Username</label>
+                <span class="text-danger" *ngIf="logInSubmitted && loginForm.get('userName')?.hasError('required')">
+                  Username can not be empty.
+                </span>
+                <span class="text-danger" *ngIf="logInSubmitted && loginForm.get('userName')?.hasError('maxlength')">
+                  Username can not exceed 20 characters.
+                </span>
+              </div>
+              <div class="form-outline mb-4">
+                <input formControlName="password" type="password" id="loginPassword" class="form-control" name="password" 
+                [class.is-invalid]="logInSubmitted && loginForm.get('password')?.errors">
+                <label class="form-label" for="loginPassword">Password</label>
+                <span class="text-danger" *ngIf="logInSubmitted && loginForm.get('password')?.hasError('required')">
+                  Password can not be empty.
+                </span>
+                <span class="text-danger" *ngIf="logInSubmitted && (loginForm.get('password')?.hasError('maxlength') || loginForm.get('password')?.hasError('minlength') || loginForm.get('password')?.hasError('capitalLetterAndNonAlphanumeric'))">
+                  Password must be between 8 and 20 characters, with at least one capital letter and one non alphanumeric character.
+                </span>
+              </div>
+              <div class="form floating" *ngIf="loginErrorMessages.length>0">
+                <ul class="text-danger">
+                  <li *ngFor="let error of loginErrorMessages">{{error}}</li>
+                </ul>
+              </div>
+              <button type="submit" class="btn  btn-block mb-4 text-white" style="background-color: #219ebc;">Submit</button>
+      
+            </form>
+            <form [formGroup]="signupForm" (ngSubmit)="onRegister()" *ngIf="!showLogin">
+              <div class="text-center mb-3">
+                    <h4 class="">Register</h4>
+              </div>
+              <div class="form-outline">
+                <input formControlName="name"  type="string" id="name" class="form-control" name="name" 
+                [class.is-invalid]="registerSubmitted && signupForm.get('name')?.errors">
+                <label class="form-label" for="name">Name</label>
+                <span class="text-danger" *ngIf="registerSubmitted && signupForm.get('name')?.hasError('required')">
+                  Name can not be empty.
+                </span>
+                <span class="text-danger" *ngIf="registerSubmitted && signupForm.get('name')?.hasError('maxlength')">
+                  Name can not exceed 20 characters.
+                </span>
+              </div>
+              <div class="form-outline">
+                <input formControlName="userName"  type="email" id="userName" class="form-control" name="userName" 
+                [class.is-invalid]="registerSubmitted && signupForm.get('userName')?.errors">
+                <label class="form-label" for="userName">Username</label>
+                <span class="text-danger" *ngIf="registerSubmitted && signupForm.get('userName')?.hasError('required')">
+                  Username can not be empty.
+                </span>
+                <span class="text-danger" *ngIf="registerSubmitted && signupForm.get('userName')?.hasError('maxlength')">
+                  Username can not exceed 20 characters.
+                </span>
+              </div>
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input formControlName="password"  type="password" id="loginPassword" class="form-control" name="password" 
+                [class.is-invalid]="registerSubmitted && signupForm.get('password')?.errors">
+                <label class="form-label" for="loginPassword">Choose a password</label>
+                <span class="text-danger" *ngIf="registerSubmitted && (signupForm.get('password')?.hasError('maxlength') || signupForm.get('password')?.hasError('minlength') || signupForm.get('password')?.hasError('capitalLetterAndNonAlphanumeric'))">
+                  Password must be between 8 and 20 characters, with at least one capital letter and one non alphanumeric character.
+                </span>
+              </div>
+              <div class="form floating" *ngIf="registerErrorMessages.length>0">
+                <ul class="text-danger">
+                  <li *ngFor="let error of registerErrorMessages">{{error}}</li>
+                </ul>
+              </div>
+              <div class="form floating" *ngIf="registerSuccessful">
+                <ul class="text-success">
+                  <li>User registered successfuly!</li>
+                </ul>
+              </div>
+              <button type="submit" class="btn  btn-block mb-4 text-white" style="background-color: #219ebc;">Submit</button>
+      
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+</section>

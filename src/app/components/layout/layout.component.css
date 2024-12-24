@@ -1,0 +1,25 @@
+.list {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+}
+
+
+.custom-btn {
+  background-color: transparent;
+  border: none;
+  color: inherit; 
+  padding: 0; 
+}
+
+.custom-btn:hover,
+.custom-btn:focus {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.custom-font-bold{
+  font-weight: 900;
+  font-family: cursive;
+}
