@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import ODataStore from 'devextreme/data/odata/store';
 import DataSource from 'devextreme/data/data_source';
 import { AuthService } from './auth.service';
@@ -10,7 +9,7 @@ import notify from 'devextreme/ui/notify';
 const uri: string = environment.baseUrl;
 @Injectable()
 export class HttpService {
-  constructor(@Inject(HttpClient) public httpClient: HttpClient, @Inject(AuthService) public authService: AuthService){}
+  constructor(private authService: AuthService){}
 
   public getOData(config: ODataConfig): DataSource {
     const url = uri + '/odata/' + config.entity;

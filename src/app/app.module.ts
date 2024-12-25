@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { JwtModule } from '@auth0/angular-jwt';
-import { UserButtonPipe } from './pipes/userbutton.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +26,6 @@ export function tokenGetter() {
     LoginComponent,
     LayoutComponent,
     NotFoundComponent,
-    UserButtonPipe,
     WorkingHoursComponent
   ],
   imports: [

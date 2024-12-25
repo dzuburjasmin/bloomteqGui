@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
@@ -11,12 +11,9 @@ const baseUrl = environment.baseUrl;
 })
 export class AuthService {
   private jwtHelper = new JwtHelperService();
-  public isAuthenticated$: Observable<boolean>;
-  public isAuthenticatedSubject$: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.isAuthenticatedSubject$ = new BehaviorSubject<boolean>(true);
-    this.isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
+
    }
    register(model: any): Observable<any> {
     return this.http.post(`${baseUrl}/api/Token/register`, model);
@@ -34,7 +31,6 @@ export class AuthService {
     this.router.navigate(['login']);
   }
   logout(){
-    this.isAuthenticatedSubject$.next(false);
     localStorage.setItem("token","")
     this.router.navigate(["login"]);
   }

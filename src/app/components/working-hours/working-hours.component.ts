@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import DataSource from 'devextreme/data/data_source';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import notify from 'devextreme/ui/notify';
@@ -13,7 +12,7 @@ export class WorkingHoursComponent implements OnInit {
   dataSource: any;
   today: Date = new Date();
   user: string = "";
-  constructor(@Inject(HttpService) public dataService: HttpService, @Inject(AuthService) public authService: AuthService) { }
+  constructor(private dataService: HttpService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.dataSource = this.dataService.getOData({ count: 10, entity: 'Shifts'});
