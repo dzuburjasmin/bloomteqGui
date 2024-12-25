@@ -16,8 +16,7 @@ export class WorkingHoursComponent implements OnInit {
   constructor(@Inject(HttpService) public dataService: HttpService, @Inject(AuthService) public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.dataSource = this.dataService.getDataODataDxDataSourceObj({ count: 10, entity: 'Shifts'});
-    this.user = this.authService.getUserName();
+    this.dataSource = this.dataService.getOData({ count: 10, entity: 'Shifts'});
   }
 
   onRowInserted(e: any) {

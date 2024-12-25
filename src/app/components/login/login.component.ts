@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   registerSuccessful:boolean = false;
   showLogin: boolean = true;
   userData: User = {  };
-  test:any;
 
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 

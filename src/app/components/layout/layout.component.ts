@@ -7,10 +7,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-
+  user: string = "";
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getUserName();
   }
 
   onLogout(){
