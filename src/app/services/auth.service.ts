@@ -42,6 +42,9 @@ export class AuthService {
     var decoded_token = this.jwtHelper.decodeToken(this.retrieveFromStorage("token"));
     return decoded_token.sub;
   }
+  getToken() : string{
+    return this.retrieveFromStorage("token");
+  }
   private retrieveFromStorage(key: string): any {
     var item = localStorage.getItem(key);
     if (item && item !== 'undefined') {

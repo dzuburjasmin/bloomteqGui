@@ -1,6 +1,32 @@
+<div class="heading"><h3>Hi {{user}}, take a look at your working hours:</h3></div>
 <dx-data-grid
+  class="container"
   [dataSource]="dataSource"
-  [columns]="columns"
   [showBorders]="true"
+  [paging]="{ pageSize: 10 }"
+  [pager]="{ showPageSizeSelector: true, allowedPageSizes: [5, 10] }"
+  [rowAlternationEnabled]="true"
+  [wordWrapEnabled]="true"
+  [editing]="{
+    mode: 'inline',
+    allowAdding: true,
+    allowUpdating: true,
+    allowDeleting: true,
+     useIcons: true
+  }"
+  (onRowInserted)="onRowInserted($event)"
+  (onRowUpdated)="onRowUpdated($event)"
+  (onRowRemoved)="onRowRemoved($event)"
+  [filterRow]="{ visible: true, applyFilter: 'auto' }"
+  [allowColumnResizing]="true"
 >
+<dxi-column dataField="Hours" dataType="number" alignment="left" [width]="'15%'">
+  <dxi-validation-rule type="range" [min]="1" [max]="8" message="You can add from 1 to 8 hours in a single day."></dxi-validation-rule>
+</dxi-column>
+<dxi-column dataField="Date" dataType="date"  format="dd.MM.yyyy" alignment="left" [width]="'15%'">
+  <dxi-validation-rule type="range" [max]="today" message="You can not add entries for future dates."></dxi-validation-rule>
+</dxi-column>
+<dxi-column dataField="Description" dataType="string" alignment="left">
+  <dxi-validation-rule type="stringLength" [min]="1" [max]="100" message="Description can be up to 100 characters."></dxi-validation-rule>
+</dxi-column>
 </dx-data-grid>
