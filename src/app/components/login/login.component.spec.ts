@@ -54,7 +54,11 @@ describe('LoginComponent', () => {
       component.loginForm.controls['userName'].setValue('testUser');
       component.loginForm.controls['password'].setValue('Test1234!');
       component.onLogin();
-      expect(authService.login).toHaveBeenCalledWith(component.loginForm.value);
+      const expectedFormValue = {
+        userName: 'testUser',
+        password: 'Test1234!'
+      };
+      expect(authService.login).toHaveBeenCalledWith(expectedFormValue);
       expect(router.navigate).toHaveBeenCalledWith(['hours']);
       expect(localStorage.getItem('token')).toBe('test-token');
     });
@@ -82,7 +86,12 @@ describe('LoginComponent', () => {
       component.signupForm.controls['password'].setValue('Test1234!');
       component.signupForm.controls['name'].setValue('Test Name');
       component.onRegister();
-      expect(authService.register).toHaveBeenCalledWith(component.signupForm.value);
+      const expectedFormValue = {
+        userName: 'testUser',
+        password: 'Test1234!',
+        name: 'Test Name'
+      };
+      expect(authService.register).toHaveBeenCalledWith(expectedFormValue);
       expect(component.registerSuccessful).toBeTrue();
     });
 

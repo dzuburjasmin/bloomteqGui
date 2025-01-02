@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   initForms(){
     this.loginForm=this.formBuilder.group({
       userName: ["", [Validators.required, Validators.maxLength(20)]],
-      password: ["", [Validators.required, Validators.maxLength(20), Validators.minLength(8), this.capitalLetterAndNonAlphanumericValidator()]],
+      password: ["", [Validators.required]],
     });
     this.signupForm=this.formBuilder.group({
       userName: ["", [Validators.required, Validators.maxLength(20)]],
@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-
     this.logInSubmitted=true;
     if (this.loginForm.valid){
     this.authService.login(this.loginForm.value).subscribe((res: any)=>{
@@ -95,8 +94,7 @@ export class LoginComponent implements OnInit {
       }  
       const hasCapitalLetter = /[A-Z]/.test(control.value);
       const hasNonAlphanumeric = /[^a-zA-Z0-9]/.test(control.value);
-  
-      if (!hasCapitalLetter || !hasNonAlphanumeric) {
+      if ((!hasCapitalLetter || !hasNonAlphanumeric) && this.showLogin == false) {
         return { capitalLetterAndNonAlphanumeric: true };
       }
   
@@ -110,5 +108,7 @@ export class LoginComponent implements OnInit {
     }else{
       this.showLogin = false;
     }
+    this.loginForm.reset();
+    this.signupForm.reset();
   }
 }
