@@ -109,6 +109,7 @@ describe('LoginComponent', () => {
     it('should validate capital letter and non-alphanumeric in password', () => {
       const validatorFn = component.capitalLetterAndNonAlphanumericValidator();
       const control = component.loginForm.controls['password'];
+      component.showLogin = false;
       control.setValue('test');
       expect(validatorFn(control)).toEqual({ capitalLetterAndNonAlphanumeric: true });
       control.setValue('Test1234!');
