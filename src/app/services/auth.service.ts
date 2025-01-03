@@ -24,8 +24,14 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token && !this.jwtHelper.isTokenExpired(token);
+    try{
+      let tokenDecoded = this.jwtHelper.decodeToken(this.retrieveFromStorage("token"));
+      let token = this.retrieveFromStorage("token");
+      return !!token && !this.jwtHelper.isTokenExpired(token);
+    } catch(e){
+      localStorage.setItem("token","")
+      return false;
+    }
   }
   startLogin(){
     this.router.navigate(['login']);

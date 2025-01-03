@@ -30,6 +30,7 @@
 </dxi-column>
 <dxi-column dataField="Date" dataType="date"  format="dd.MM.yyyy" alignment="left" [width]="'15%'">
   <dxi-validation-rule type="range" [max]="today" message="You can not add entries for future dates."></dxi-validation-rule>
+  <dxi-validation-rule type="custom" [validationCallback]="validateDate" message="Invalid date format."></dxi-validation-rule>
 </dxi-column>
 <dxi-column dataField="Description" dataType="string" alignment="left">
   <dxi-validation-rule type="stringLength" [min]="1" [max]="100" message="Description must be between 1 and 100 characters."></dxi-validation-rule>

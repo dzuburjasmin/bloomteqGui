@@ -17,7 +17,13 @@ export class WorkingHoursComponent implements OnInit {
     this.dataSource = this.dataService.getOData({ count: 10, entity: 'Shifts'});
   }
 
-  onRowInserted(e: any) {
+  validateDate(e:any){
+    if (e.data.Date)
+      return true;
+    else 
+    return false;  
+  }
+   onRowInserted(e: any) {
     notify('ENTRY INSERTED!', 'success', 5000);
   }
   onRowRemoved(e: any) {
